@@ -64,12 +64,12 @@ export default function ContactPage() {
         error: "Error",
       }
     );
+    // const timer = setTimeout(() => {
+    //   console.log("time to move");
+    //   router.back();
+    // }, 1500);
+    // return () => clearTimeout(timer);
 
-    const timer = setTimeout(() => {
-      console.log("time to move");
-      router.back();
-    }, 1500);
-    return () => clearTimeout(timer);
     // alert("Message sent successfully!");
     reset();
   };

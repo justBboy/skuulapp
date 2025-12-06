@@ -30,9 +30,9 @@ export default function HeaderSection() {
 
   // Sample notifications
   const notifications = [
-    { id: 1, text: "New user joined your quiz!", time: "2m ago" },
-    { id: 2, text: "You unlocked the Gold Badge 🏅", time: "10m ago" },
-    { id: 3, text: "New high score achieved!", time: "1h ago" },
+    { id: 1, text: "New School joined!", time: "2m ago" },
+    { id: 2, text: "100 school hit 🏅", time: "10m ago" },
+    { id: 3, text: "New request made", time: "1h ago" },
   ];
 
   // 🔹 Close dropdown when clicking outside
@@ -80,7 +80,7 @@ export default function HeaderSection() {
         />
         <input
           type="text"
-          placeholder="Search users, quizzes, or game modes..."
+          placeholder="Search schools, students, teachers ..."
           className="w-full  bg-transparent outline-none text-sm placeholder:text-gray-400"
         />
       </div>

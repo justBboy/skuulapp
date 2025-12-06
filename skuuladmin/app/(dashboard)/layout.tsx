@@ -14,20 +14,22 @@ export default function DashboardLayout({
     <>
       <SidebarProvider
         style={{
-          "--sidebar-width": "16rem",
-          "--sidebar-width-mobile": "18rem",
+          "--sidebar-width": "14rem",
+          "--sidebar-width-mobile": "16rem",
         }}
         // SIDEBAR_KEYBOARD_SHORTCUT="b"
       >
         <AppSidebar />
         <PageTransition>
           <ThemeProvider>
-            <main>
-              <div className="flex shadow-md h-15 px-5 bg-sidebar">
+            <main className="relative">
+              <div className="flex shadow-md h-15 px-5 bg-sidebar sticky rounded-none top-0 z-10 shrink-0 transition-[width,height] ease-linear">
                 <SidebarTrigger />
                 <HeaderSection />
               </div>
-              {children}
+              <div className="mx-5 overflow-y-scroll no-scrollbar">
+                {children}
+              </div>
             </main>
           </ThemeProvider>
         </PageTransition>

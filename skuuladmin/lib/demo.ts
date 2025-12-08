@@ -1,4 +1,6 @@
-import { Activity, CreditCard, Mail, Server } from "lucide-react";
+import { Activity, BarChart3, CreditCard, Download, Eye, FileText, Mail, Megaphone, Plus, Server, Upload } from "lucide-react";
+import { ActivityLog, QuickActionFeatures } from "./types";
+
 
 // RECENT ENROLLMENT PAGE
 export const RecentAddedSchool=[
@@ -6,24 +8,19 @@ export const RecentAddedSchool=[
         id:1,
         schoolName: "Tutu School",
         email: "tutu@school.edu",
-        joined: "2 hours ago",
-       
-      
+        joined: "2 hours ago",       
     },
     {
         id:2,
         schoolName: "Solomon Acadamy",
         email: "solo@school.edu",
         joined: "1 day ago",
-    
     },
     {
         id:3,
         schoolName: "Gideon Education Complex",
         email: "MJ@school.edu",
         joined: "4 days ago",
-        
-       
     },
     
    
@@ -110,3 +107,98 @@ export const SchoolsAttentionData = [
       trend: "up",
     },
   ];
+
+  // RECENT TEACHERS ACTIVITY IN TEACHERS PAGE
+  export const teachersActivities: ActivityLog[] = [
+    {
+      id: "1",
+      action: "New teacher added",
+      teacherName: "Maria Garcia",
+      timestamp: "2024-12-01T09:30:00",
+      type: "added",
+    },
+    {
+      id: "2",
+      action: "Profile updated",
+      teacherName: "Sarah Johnson",
+      timestamp: "2024-11-28T14:15:00",
+      type: "updated",
+    },
+    {
+      id: "3",
+      action: "Status changed to inactive",
+      teacherName: "Robert Brown",
+      timestamp: "2024-11-25T11:00:00",
+      type: "status_change",
+    },
+    {
+      id: "4",
+      action: "Assigned to Grade 11A",
+      teacherName: "Emily Rodriguez",
+      timestamp: "2024-11-20T16:45:00",
+      type: "assignment",
+    },
+    {
+      id: "5",
+      action: "New teacher added",
+      teacherName: "Emily Rodriguez",
+      timestamp: "2024-11-20T10:00:00",
+      type: "added",
+    },
+  ]
+
+  export const overviewQuickActions:QuickActionFeatures[] = [
+    {
+      label: "Register New School",
+      icon: Plus,
+      variant: "default" as const,
+    },
+    {
+      label: "View All Schools",
+      icon: Eye,
+      variant: "outline" as const,
+    },
+    {
+      label: "Send Announcement",
+      icon: Megaphone,
+      variant: "outline" as const,
+    },
+    {
+      label: "Create Course Template",
+      icon: FileText,
+      variant: "outline" as const,
+    },
+    {
+      label: "Bulk Import",
+      icon: Upload,
+      variant: "outline" as const,
+    },
+    {
+      label: "Generate Report",
+      icon: BarChart3,
+      variant: "outline" as const,
+    },
+  ];
+
+  export const teachersQuickActions =[
+    {
+      label: "Add Teacher",
+      icon: Plus,
+      variant: "default" as const,
+    },
+    {
+      label: "View All Teachers",
+      icon: Eye,
+      variant: "outline" as const,
+    }, 
+    {
+      label: "Send Announcement",
+      icon: Megaphone,
+      variant: "outline" as const,
+    },
+    {
+      label: "Export",
+      icon: Download,
+      variant: "outline" as const,
+    },
+  ]

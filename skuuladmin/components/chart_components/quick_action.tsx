@@ -18,41 +18,46 @@ import {
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import ClickTransition from "../animations/click_transition";
+import { QuickActionFeatures } from "@/lib/types";
 
-const actions = [
-  {
-    label: "Register New School",
-    icon: Plus,
-    variant: "default" as const,
-  },
-  {
-    label: "View All Schools",
-    icon: Eye,
-    variant: "outline" as const,
-  },
-  {
-    label: "Send Announcement",
-    icon: Megaphone,
-    variant: "outline" as const,
-  },
-  {
-    label: "Create Course Template",
-    icon: FileText,
-    variant: "outline" as const,
-  },
-  {
-    label: "Bulk Import",
-    icon: Upload,
-    variant: "outline" as const,
-  },
-  {
-    label: "Generate Report",
-    icon: BarChart3,
-    variant: "outline" as const,
-  },
-];
+// const actions = [
+//   {
+//     label: "Register New School",
+//     icon: Plus,
+//     variant: "default" as const,
+//   },
+//   {
+//     label: "View All Schools",
+//     icon: Eye,
+//     variant: "outline" as const,
+//   },
+//   {
+//     label: "Send Announcement",
+//     icon: Megaphone,
+//     variant: "outline" as const,
+//   },
+//   {
+//     label: "Create Course Template",
+//     icon: FileText,
+//     variant: "outline" as const,
+//   },
+//   {
+//     label: "Bulk Import",
+//     icon: Upload,
+//     variant: "outline" as const,
+//   },
+//   {
+//     label: "Generate Report",
+//     icon: BarChart3,
+//     variant: "outline" as const,
+//   },
+// ];
 
-export function QuickActions() {
+export function QuickActions({
+  features,
+}: {
+  features: QuickActionFeatures[];
+}) {
   return (
     <div className="bg-card border-none">
       <CardHeader>
@@ -60,7 +65,7 @@ export function QuickActions() {
         <CardDescription>Common administrative tasks</CardDescription>
       </CardHeader>
       <CardContent className="grid grid-cols-2 gap-3 mt-2">
-        {actions.map((action) => (
+        {features.map((action) => (
           // <motion.div
           //   whileHover={{ scale: 1.05 }}
           //   whileTap={{ scale: 0.9 }}

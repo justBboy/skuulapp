@@ -1,11 +1,12 @@
-import { Activity, HandCoins, Merge, MonitorCog, School, Users } from "lucide-react";
+import { Activity, Building2, HandCoins, Merge, MonitorCog, School, User, UserCheck, UserPlus, UserX, Users } from "lucide-react";
 import { PiUsersFourDuotone } from "react-icons/pi";
 import { FaUsersBetweenLines } from "react-icons/fa6";
+import { CardFeatures } from "./types";
 // import { GiTakeMyMoney } from "react-icons/gi";
-export const cardFeatures = [
+export const OverviewCardFeatures:CardFeatures[] = [
     {
       title: "Total Schools",
-      description: "Number of schools using the system",
+      // description: "Number of schools using the system",
       value: "42",
       icon: School,
       subtitle: "+3% this month",
@@ -62,3 +63,41 @@ export const cardFeatures = [
         viewStatus: true,
       },
   ];
+
+  export const TeacherCardFeatures =[
+    {
+      title: "Total Teachers",
+      value: "16",
+      icon: Users ,
+      subtitle: "Registered staff members",
+      viewStatus: true,
+   }, 
+    {
+      title: "Active Teachers",
+      value: "12",
+      icon: UserCheck, 
+      subtitle: "+2% from last month",
+      viewStatus: true,
+   }, 
+    {
+      title: "Inactive Teachers",
+      value: "4",
+      icon: UserX ,
+      subtitle: "",
+      viewStatus: true,
+   }, 
+  //   {
+  //     title: "Recently Added",
+  //     value: "1",
+  //     icon: UserPlus ,
+  //     subtitle: "",
+  //     viewStatus: false,
+  //  }, 
+    {
+      title: "Department",
+      value: "7",
+      icon: Building2,
+      subtitle: "",
+      viewStatus: false,
+   }, 
+  ]

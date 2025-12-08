@@ -1,5 +1,5 @@
 "use client";
-import { cardFeatures } from "@/lib/cardConfig";
+import { OverviewCardFeatures } from "@/lib/cardConfig";
 import CardComponent from "@/components/chart_components/cards_component";
 import PageHeader from "@/components/headers/pageHeader";
 import { LineChartGraph } from "@/components/chart_components/line_chart_components";
@@ -8,7 +8,7 @@ import BarChartGraph from "@/components/chart_components/bar_chart_component";
 import { OverviewBarChartData } from "@/lib/barConfig";
 import TableComponent from "@/components/tables/front_end_table";
 import { OverviewSchoolTable } from "@/lib/table";
-import { StudentsTable } from "@/lib/table";
+// import { StudentsTable } from "@/lib/table";
 import { DynamicTable } from "@/components/tables/dynamic_table";
 
 import { ActivityFeed } from "@/components/chart_components/activity_feeds";
@@ -19,6 +19,7 @@ import { QuickActions } from "@/components/chart_components/quick_action";
 import { SystemHealth } from "@/components/chart_components/system_health";
 import { Card } from "@/components/ui/card";
 import { useSidebar } from "@/components/ui/sidebar";
+import { overviewQuickActions } from "@/lib/demo";
 // import { Sprout } from "lucide-react";
 
 export default function OverviewPage() {
@@ -66,7 +67,7 @@ export default function OverviewPage() {
 
   const { isMobile } = useSidebar();
   return (
-    <div className="space-y-8 no-scrollbar">
+    <div className="space-y-4 no-scrollbar pb-4">
       <div className="">
         <PageHeader
           title="Dashboard"
@@ -107,7 +108,7 @@ export default function OverviewPage() {
             </CardFooter>
           </Card>
         ))} */}
-        <CardComponent features={cardFeatures} />
+        <CardComponent features={OverviewCardFeatures} />
       </div>
       <div className="grid md:grid-cols-2 gap-4">
         <div className="" id="lineChart">
@@ -161,7 +162,7 @@ export default function OverviewPage() {
 
       {/* LAST SECTION */}
       <div
-        className={`mb-4 w-full gap-4 ${
+        className={` w-full gap-4 ${
           isMobile ? "grid grid-cols-1" : "grid grid-cols-2"
         }`}
       >
@@ -183,7 +184,7 @@ export default function OverviewPage() {
         {/* LEFT SIDE */}
         <Card className=" gap-8  ">
           <div className="">
-            <QuickActions />
+            <QuickActions features={overviewQuickActions} />
           </div>
           <div className="h-fit">
             <ActivityFeed />

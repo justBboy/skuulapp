@@ -1,7 +1,13 @@
 "use client";
 
 // import { LucideIcon, TrendingUp } from "lucide-react";
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
+// import dynamic from "next/dynamic";
+
+// const Recharts = dynamic(() => import("recharts"), { ssr: false });
+
+// const { LineChart, Line, XAxis, CartesianGrid } = Recharts;
+import { LineChart, Line, XAxis, CartesianGrid } from "recharts";
+
 // import { Sprout } from "lucide-react";
 import { iconMap } from "@/lib/lineChartConfig";
 

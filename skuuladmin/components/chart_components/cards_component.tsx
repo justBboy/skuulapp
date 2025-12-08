@@ -1,3 +1,4 @@
+"use client";
 import { Activity, LucideProps, Merge, MonitorCog, School } from "lucide-react";
 import {
   Card,
@@ -12,20 +13,25 @@ import { Button } from "../ui/button";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 import { useSidebar } from "../ui/sidebar";
 import ClickTransition from "../animations/click_transition";
+import { CardFeatures } from "@/lib/types";
 // import { cardFeatures } from "@/lib/cardConfig";
 
-type Feature = {
-  title: string;
-  value: string;
-  description: string;
-  subtitle: string;
-  viewStatus: boolean;
-  icon: ForwardRefExoticComponent<
-    Omit<LucideProps, "ref"> & RefAttributes<SVGAElement>
-  >;
-};
+// type features = {
+//   title: string;
+//   value: string;
+//   description: string;
+//   subtitle: string;
+//   viewStatus: boolean;
+//   icon: ForwardRefExoticComponent<
+//     Omit<LucideProps, "ref"> & RefAttributes<SVGAElement>
+//   >;
+// };
 
-export default function CardComponent({ features }: { features: Feature[] }) {
+export default function CardComponent({
+  features,
+}: {
+  features: CardFeatures[];
+}) {
   //   const cardFeatures = [
   //     {
   //       title: "Total Schools",

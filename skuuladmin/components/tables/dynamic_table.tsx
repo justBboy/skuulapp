@@ -147,7 +147,7 @@ export function DynamicTable<T extends object>({
               {headers.map((key) => (
                 <TableHead
                   key={String(key)}
-                  className="cursor-pointer capitalize font-blold"
+                  className="cursor-not-allowed font-extrabold capitalize "
                   onClick={() => onSort && onSort(key)}
                 >
                   {String(key)}
@@ -169,7 +169,7 @@ export function DynamicTable<T extends object>({
                 {/* ACTION COLUMN */}
                 <TableCell className="text-right">
                   <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
+                    <DropdownMenuTrigger asChild className="cursor-pointer">
                       <Button variant="ghost" size="icon">
                         <MoreHorizontal className="h-4 w-4" />
                       </Button>

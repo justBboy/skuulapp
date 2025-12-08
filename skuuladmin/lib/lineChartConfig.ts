@@ -3,7 +3,7 @@ import { LucideIcon, TrendingUp, Sprout  } from "lucide-react";
 export const iconMap: Record<string, LucideIcon> = {
     Sprout,
     TrendingUp,
-    // School,
+  
   };
 
 export const OverviewLineChartData = [

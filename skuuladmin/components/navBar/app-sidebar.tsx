@@ -11,18 +11,20 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
   useSidebar,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
-import logo from "@/public/purple-dices.png";
-import skuulLogo from "@/public/skuulLogo1.png";
+import skuulLogo from "@/public/SkuulBusLogo1.png";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { LiaUserTieSolid } from "react-icons/lia";
 import {
-  ChartColumn,
+  ChevronRight,
   CircleQuestionMark,
   CircleUser,
   DollarSign,
@@ -31,22 +33,105 @@ import {
 } from "lucide-react";
 import { PiStudentDuotone, PiBookOpenTextDuotone } from "react-icons/pi";
 import { SiGoogleclassroom } from "react-icons/si";
+import { RiParentLine } from "react-icons/ri";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "../ui/collapsible";
 
 export function AppSidebar() {
   const pathname = usePathname();
   const { state, open } = useSidebar();
-
-  // Sidebar expanded state
   const isVisible = state === "expanded" && open;
 
-  const menuList = [
-    { title: "Overview", url: "/overview", icon: ChartColumn },
-    { title: "Teachers", url: "/teachers", icon: LiaUserTieSolid },
-    { title: "Students", url: "/students", icon: PiStudentDuotone },
-    { title: "Courses", url: "/courses", icon: PiBookOpenTextDuotone },
-    { title: "Classes", url: "/classes", icon: SiGoogleclassroom },
-    { title: "Fees & Payments", url: "/fees", icon: DollarSign },
-  ];
+  /* ---------------- ACTIVE ROUTE LOGIC ---------------- */
+  const isActive = (url?: string, exact = false) => {
+    if (!url || url === "#") return false;
+    if (exact) return pathname === url;
+    return pathname === url || pathname.startsWith(url + "/");
+  };
+
+  /* ---------------- POLISHED ACTIVE STYLES ---------------- */
+  const activeMenuItem =
+    "relative text-yellow-700 bg-primary/10 transition-all duration-300 ease-out " +
+    "before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-yellow-500 " +
+    "before:origin-top before:scale-y-100 before:transition-transform before:duration-300";
+
+  const inactiveItem =
+    "relative transition-all duration-300 ease-out hover:bg-primary/5";
+
+  const activeSubMenuItem =
+    "relative text-yellow-700 bg-primary/5 transition-all duration-300 ease-out " +
+    "before:absolute before:left-0 before:top-0 before:h-full before:w-[1px] before:bg-yellow-400/70 " +
+    "before:origin-top before:scale-y-100 before:transition-transform before:duration-300";
+
+  //     activeMenuItem
+  // activeSubMenuItem
+  // menuItemBase
+  /* ---------------- MENU DATA ---------------- */
+  const menuList = {
+    dashBoard: {
+      title: "DashBoard",
+      url: "#",
+      items: [
+        { title: "Overview", url: "/overview" },
+        { title: "Logs", url: "#" },
+      ],
+    },
+    courses: {
+      title: "Courses",
+      url: "/courses",
+      icon: PiBookOpenTextDuotone,
+    },
+    classes: {
+      title: "Classes",
+      url: "/classes",
+      icon: SiGoogleclassroom,
+    },
+    dropdownList: {
+      firstDropDownList: [
+        {
+          title: "Teachers",
+          icon: LiaUserTieSolid,
+          items: [
+            { title: "Overview", url: "/teachers" },
+            { title: "Directory", url: "/teachers/directory" },
+            { title: "Attendance", url: "#" },
+          ],
+        },
+        {
+          title: "Students",
+          icon: PiStudentDuotone,
+          items: [
+            { title: "Overview", url: "/students" },
+            { title: "Directory", url: "/students/directory" },
+            { title: "Enrollment", url: "#" },
+            { title: "Attendance", url: "#" },
+          ],
+        },
+      ],
+      secondDropDownList: [
+        {
+          title: "Parents",
+          icon: RiParentLine,
+          items: [
+            { title: "Add", url: "#" },
+            { title: "View", url: "#" },
+          ],
+        },
+        {
+          title: "Fees & Payments",
+          icon: DollarSign,
+          items: [
+            { title: "Fee Management", url: "#" },
+            { title: "Wallet & Transactions", url: "#" },
+            { title: "Revenue Tracking", url: "#" },
+          ],
+        },
+      ],
+    },
+  };
 
   const footerList = [
     { title: "Profile", url: "/profile", icon: CircleUser },
@@ -54,22 +139,13 @@ export function AppSidebar() {
     { title: "Settings", url: "/settings", icon: Settings },
   ];
 
-  const isActive = (url: string) => pathname === url;
-  const activeStyle =
-    "bg-primary/10 border-l-4 border-yellow-500 text-primary font-medium";
-
   return (
     <Sidebar collapsible="icon" variant="sidebar">
       {/* HEADER */}
       <SidebarHeader className="p-2">
-        <div className="flex items-center gap-3 justify-center transition-all duration-300">
-          <Image src={logo} alt="logo" width={40} height={40} />
+        <div className="flex justify-center">
           {isVisible && (
-            <Image
-              src={skuulLogo}
-              alt="logo"
-              className="w-36 md:w-28 transition-all duration-300"
-            />
+            <Image src={skuulLogo} alt="logo" className="w-36 md:w-28" />
           )}
         </div>
       </SidebarHeader>
@@ -77,64 +153,190 @@ export function AppSidebar() {
       <Separator />
 
       <SidebarContent>
-        {/* MAIN NAVIGATION */}
         <SidebarGroup>
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
+            {/* DASHBOARD */}
             <SidebarMenu>
-              {menuList.map((item) => {
-                const active = isActive(item.url);
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild className="cursor-not-allowed">
+                  <Link href="#">DashBoard</Link>
+                </SidebarMenuButton>
+
+                <SidebarMenuSub>
+                  {menuList.dashBoard.items.map((item) => {
+                    const active = isActive(item.url, true);
+                    return (
+                      <SidebarMenuSubItem key={item.title}>
+                        <SidebarMenuSubButton
+                          asChild
+                          className={active ? activeSubMenuItem : inactiveItem}
+                        >
+                          <Link href={item.url} className="text-xs">
+                            {item.title}
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    );
+                  })}
+                </SidebarMenuSub>
+              </SidebarMenuItem>
+            </SidebarMenu>
+
+            {/* FIRST DROPDOWN */}
+            <SidebarMenu>
+              {menuList.dropdownList.firstDropDownList.map((item) => {
+                const parentActive = item.items.some((sub) =>
+                  isActive(sub.url, true)
+                );
+
                 return (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton
-                      asChild
-                      className={`
-                        h-10
-                        transition-all duration-200
-                        ${
-                          active ? activeStyle : "border-l-4 border-transparent"
-                          // active
-                          //   ? "bg-primary/10 border-l-4 border-primary text-primary font-medium"
-                          //   : "border-l-4 border-transparent"
-                        }
-                      `}
-                    >
-                      <Link href={item.url}>
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
+                  <Collapsible
+                    key={item.title}
+                    asChild
+                    defaultOpen={parentActive}
+                  >
+                    <SidebarMenuItem className="group/collapsible">
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton
+                          className={
+                            parentActive ? activeMenuItem : inactiveItem
+                          }
+                        >
+                          <item.icon className="text-current" />
+                          <span>{item.title}</span>
+
+                          <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {item.items.map((sub) => {
+                            const active = isActive(sub.url, true);
+                            return (
+                              <SidebarMenuSubItem key={sub.title}>
+                                <SidebarMenuSubButton
+                                  asChild
+                                  className={
+                                    active ? activeSubMenuItem : inactiveItem
+                                  }
+                                >
+                                  <Link href={sub.url} className="text-xs">
+                                    {sub.title}
+                                  </Link>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            );
+                          })}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    </SidebarMenuItem>
+                  </Collapsible>
+                );
+              })}
+            </SidebarMenu>
+
+            {/* COURSES */}
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                asChild
+                className={
+                  isActive(menuList.courses.url) ? activeMenuItem : inactiveItem
+                }
+              >
+                <Link href={menuList.courses.url}>
+                  <menuList.courses.icon className="text-current" />
+                  <span>{menuList.courses.title}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+
+            {/* CLASSES */}
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                asChild
+                className={
+                  isActive(menuList.classes.url) ? activeMenuItem : inactiveItem
+                }
+              >
+                <Link href={menuList.classes.url}>
+                  <menuList.classes.icon className="text-current" />
+                  <span>{menuList.classes.title}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+
+            {/* SECOND DROPDOWN */}
+            <SidebarMenu>
+              {menuList.dropdownList.secondDropDownList.map((item) => {
+                const parentActive = item.items.some((sub) =>
+                  isActive(sub.url, true)
+                );
+
+                return (
+                  <Collapsible
+                    key={item.title}
+                    asChild
+                    defaultOpen={parentActive}
+                  >
+                    <SidebarMenuItem className="group/collapsible">
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton
+                          className={
+                            parentActive ? activeMenuItem : inactiveItem
+                          }
+                        >
+                          <item.icon className="text-current" />
+                          <span>{item.title}</span>
+                          <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {item.items.map((sub) => {
+                            const active = isActive(sub.url, true);
+                            return (
+                              <SidebarMenuSubItem key={sub.title}>
+                                <SidebarMenuSubButton
+                                  asChild
+                                  className={
+                                    active ? activeSubMenuItem : inactiveItem
+                                  }
+                                >
+                                  <Link href={sub.url} className="text-xs">
+                                    {sub.title}
+                                  </Link>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            );
+                          })}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    </SidebarMenuItem>
+                  </Collapsible>
                 );
               })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* OTHER LINKS */}
+        {/* OTHERS */}
         <SidebarGroup>
           <SidebarGroupLabel>Others</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {footerList.map((item) => {
-                const active = isActive(item.url);
+                const active = isActive(item.url, true);
                 return (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
                       asChild
-                      className={`
-                        h-10
-                        transition-all duration-200
-                        ${
-                          active ? activeStyle : "border-l-4 border-transparent"
-                          // active
-                          //   ? "bg-primary/10 border-l-4 border-primary text-primary font-medium"
-                          //   : "border-l-4 border-transparent"
-                        }
-                      `}
+                      className={active ? activeMenuItem : inactiveItem}
                     >
                       <Link href={item.url}>
-                        <item.icon />
+                        <item.icon className="text-current" />
                         <span>{item.title}</span>
                       </Link>
                     </SidebarMenuButton>
@@ -148,202 +350,21 @@ export function AppSidebar() {
 
       {/* FOOTER */}
       <SidebarFooter>
-        <SidebarGroup>
-          <Separator />
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  className="h-10 text-red-500 hover:bg-red-500/10 transition-all"
-                >
-                  <Link href="/auth/login">
-                    <LogOut />
-                    <span>Log Out</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <Separator />
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              className="text-red-500 hover:bg-red-500/10 transition-all"
+            >
+              <Link href="/auth/login">
+                <LogOut />
+                <span>Log Out</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
   );
 }
-
-// "use client";
-// import {
-//   Sidebar,
-//   SidebarContent,
-//   SidebarFooter,
-//   SidebarGroup,
-//   SidebarGroupContent,
-//   SidebarGroupLabel,
-//   SidebarHeader,
-//   SidebarMenu,
-//   SidebarMenuButton,
-//   SidebarMenuItem,
-//   useSidebar,
-// } from "@/components/ui/sidebar";
-// import Image from "next/image";
-// import logo from "@/public/purple-dices.png";
-// import skuulLogo from "@/public/skuulLogo1.png";
-// import { Separator } from "../ui/separator";
-// import { CommandDialogSearch } from "../command-menu/command-menu";
-// import { LiaUserTieSolid } from "react-icons/lia";
-// import {
-//   ChartColumn,
-//   CircleQuestionMark,
-//   CircleUser,
-//   DollarSign,
-//   LayoutDashboard,
-//   LogOut,
-//   Settings,
-// } from "lucide-react";
-// import { PiStudentDuotone } from "react-icons/pi";
-// import { SiGoogleclassroom } from "react-icons/si";
-// import { PiBookOpenTextDuotone } from "react-icons/pi";
-// import Link from "next/link";
-
-// export function AppSidebar() {
-//   const {
-//     state,
-//     open,
-//     setOpen,
-//     openMobile,
-//     setOpenMobile,
-//     isMobile,
-//     toggleSidebar,
-//   } = useSidebar();
-
-//   // const isVisible = state === "expanded" && open === true;
-//   const isVisible = state === "expanded" && open;
-
-//   console.log("The company Logo" + isVisible);
-
-//   const menuList = [
-//     {
-//       title: "Overview",
-//       url: "#",
-//       icon: ChartColumn,
-//       // icon: LayoutDashboard,
-//     },
-//     {
-//       title: "Teachers",
-//       url: "#",
-//       icon: LiaUserTieSolid,
-//     },
-//     {
-//       title: "Student",
-//       url: "#",
-//       icon: PiStudentDuotone,
-//     },
-//     {
-//       title: "Courses",
-//       url: "#",
-//       icon: PiBookOpenTextDuotone,
-//     },
-//     {
-//       title: "Classes",
-//       url: "#",
-//       icon: SiGoogleclassroom,
-//     },
-//     {
-//       title: "Fees & Payments",
-//       url: "#",
-//       icon: DollarSign,
-//     },
-//   ];
-//   const footerList = [
-//     {
-//       title: "Profile",
-//       url: "#",
-//       icon: CircleUser,
-//     },
-//     {
-//       title: "Help",
-//       url: "#",
-//       icon: CircleQuestionMark,
-//     },
-//     {
-//       title: "Settings",
-//       url: "#",
-//       icon: Settings,
-//     },
-//   ];
-
-//   return (
-//     <Sidebar collapsible="icon" variant="sidebar">
-//       <SidebarHeader className="p-1">
-//         <div className=" flex items-center gap-4 justify-center">
-//           <Image src={logo} alt="logo" width={50} height={50} />
-//           {isVisible ? (
-//             <Image src={skuulLogo} alt="logo" className="w-40 md:w-32" />
-//           ) : (
-//             " "
-//           )}
-//         </div>
-//       </SidebarHeader>
-//       <Separator className="" />
-//       <SidebarContent>
-//         {/* <CommandDialogSearch /> */}
-
-//         <SidebarGroup>
-//           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-//           <SidebarGroupContent>
-//             <SidebarMenu>
-//               {menuList.map((item) => (
-//                 <SidebarMenuItem key={item.title} className="">
-//                   <SidebarMenuButton asChild className=" h-10">
-//                     <Link href={item.url}>
-//                       <item.icon />
-//                       <span className="text-md font-medium">{item.title}</span>
-//                     </Link>
-//                   </SidebarMenuButton>
-//                 </SidebarMenuItem>
-//               ))}
-//             </SidebarMenu>
-//           </SidebarGroupContent>
-//         </SidebarGroup>
-
-//         {/* OTHERS */}
-//         <SidebarGroup>
-//           <SidebarGroupLabel>Others</SidebarGroupLabel>
-//           <SidebarGroupContent>
-//             <SidebarMenu>
-//               {footerList.map((item) => (
-//                 <SidebarMenuItem key={item.title} className="">
-//                   <SidebarMenuButton asChild className=" h-10">
-//                     <Link href={item.url}>
-//                       <item.icon />
-//                       <span className="text-md font-medium">{item.title}</span>
-//                     </Link>
-//                   </SidebarMenuButton>
-//                 </SidebarMenuItem>
-//               ))}
-//             </SidebarMenu>
-//           </SidebarGroupContent>
-//         </SidebarGroup>
-//       </SidebarContent>
-
-//       {/* FOOTER PAGE */}
-//       <SidebarFooter>
-//         <SidebarGroup>
-//           <Separator />
-//           <SidebarGroupContent>
-//             <SidebarMenu>
-//               <SidebarMenuItem className="cursor-pointer">
-//                 <SidebarMenuButton asChild className=" h-10 text-red-500">
-//                   <Link href={"#"}>
-//                     <LogOut />
-//                     <span className="text-md font-medium">Log Out</span>
-//                   </Link>
-//                 </SidebarMenuButton>
-//               </SidebarMenuItem>
-//             </SidebarMenu>
-//           </SidebarGroupContent>
-//         </SidebarGroup>
-//       </SidebarFooter>
-//     </Sidebar>
-//   );
-// }

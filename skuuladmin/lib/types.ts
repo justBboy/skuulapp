@@ -1,7 +1,9 @@
 import { LucideIcon } from "lucide-react"
 import { IconType } from "react-icons/lib"
 
+// TEACHER'S TABLE ROW PROPS
 export interface Teacher {
+    // avatar: string
     id: string
     name: string
     email: string
@@ -11,10 +13,10 @@ export interface Teacher {
     classes: string[]
     status: "active" | "inactive"
     dateJoined: string
-    // avatar?: string
     department: string
-  }
-  
+    }
+    
+    // ACTIVITY CARD ROW PROPS
   export interface ActivityLog {
     id: string
     action: string
@@ -23,16 +25,19 @@ export interface Teacher {
     type: "added" | "updated" | "status_change" | "assignment"
   }
   
+  // DEPARTMENT CARD ROW PROPS
   export interface DepartmentStats {
     name: string
     count: number
   }
   
+  // SUBJECT CARD ROW PROPS
   export interface SubjectStats {
     name: string
     count: number
   }
   
+  // SCHOOL TABLE ROW PROPS
   export interface School {
     id: number;
     schoolName: string;
@@ -46,6 +51,7 @@ export interface Teacher {
     enrollmentDate:"";
   };
 
+  // REUSEABLE CARDS PROPS
   export interface CardFeatures  {
     title: string;
     value: string;
@@ -61,8 +67,46 @@ export interface Teacher {
   };
  
 
+  // QUICK ACTIONS PROPS
   export interface QuickActionFeatures{
     label: string;
   icon: LucideIcon; // Use this if using Lucide. Use React.ElementType if custom components.
   variant: 'default' | 'outline'; //
+  href:string;
   }
+
+
+  // STUDENT TABLE ROW PROPS
+  // export interface StudentRowProps {
+  //   student: {
+  //     id: string;
+  //     name: string;
+  //     email: string;
+  //     avatar: string;
+  //     class: string;
+  //     status: "active" | "inactive" | "suspended";
+  //     lastActive: string;
+  //     avgScore: number;
+  //   };
+  // }
+  export interface StudentRowProps {
+      // student: {
+      //   id: string;
+      //   name: string;
+      //   email: string;
+      //   avatar: string;
+      //   class: string;
+      //   status: "active" | "inactive" | "suspended";
+      //   lastActive: string;
+      //   avgScore: number;
+      //   };
+        id: string;
+        name: string;
+        email: string;
+        avatar: string;
+        class: string;
+        status: "active" | "inactive" | "suspended";
+        lastActive: string;
+        avgScore: number;
+  }
+  

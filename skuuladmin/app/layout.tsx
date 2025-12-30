@@ -5,6 +5,10 @@ import { Toaster } from "@/components/ui/sonner";
 import PageTransition from "@/components/animations/page-transitions";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 
+import { Provider } from "react-redux";
+import { store } from "@/lib/redux/store";
+import { Providers } from "./provider";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -39,7 +43,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <PageTransition>
-            <main>{children}</main>
+            <Providers>
+              <main>{children}</main>
+            </Providers>
           </PageTransition>
         </ThemeProvider>
         <Toaster />

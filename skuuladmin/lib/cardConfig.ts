@@ -21,7 +21,7 @@ export const OverviewCardFeatures:CardFeatures[] = [
     },
     {
       title: "Most Active",
-      value: "Lawson Acadamy",
+      value: "Lawson Academy",
       icon: Activity,
       subtitle: "+1% this month",
       viewStatus: false,

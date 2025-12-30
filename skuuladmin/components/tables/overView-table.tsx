@@ -30,7 +30,6 @@ type TableProps<T extends object> = {
   page?: number;
   pageSize?: number;
   total?: number;
-
   // Server-ready handlers
   onSearch?: (value: string) => void;
   onSort?: (column: keyof T) => void;
@@ -198,9 +197,12 @@ export function DynamicTable<T extends object>({
             <TableRow className="hover:!bg-transparent">
               <TableCell colSpan={headers.length}>
                 <div className="flex items-center justify-between">
-                  <span>
-                    Page {page} of {totalPages}. {description}
-                  </span>
+                  <p className="text-sm text-muted-foreground">
+                    Showing{" "}
+                    <span className="font-medium text-foreground">1-8</span> of{" "}
+                    <span className="font-medium text-foreground">1,245</span>{" "}
+                    students
+                  </p>
                   <div className="flex justify-end gap-3 mt-4">
                     <Button
                       variant="outline"

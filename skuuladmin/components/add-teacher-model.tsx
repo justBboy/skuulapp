@@ -7,7 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 // import { TeacherForm } from "./teacher-form";
-import { TeacherForm } from "../forms/teachers-form";
+import { TeacherForm } from "./forms/teachers-form";
 import type { Teacher } from "@/lib/types";
 
 interface AddTeacherModalProps {

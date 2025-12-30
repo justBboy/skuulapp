@@ -27,7 +27,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { FiltersBar } from "../chart_components/filters-bar";
+import { FiltersBar } from "../filters-bar";
 import { Teacher } from "@/lib/types";
 
 type GenericObject = Record<string, any>;
@@ -76,7 +76,7 @@ export default function TableComponent({
 }) {
   const safeData = Array.isArray(tableCellsData) ? tableCellsData : [];
 
-  const hiddenColumns = ["subjects", "classes", "gender"];
+  const hiddenColumns = ["progress", "classes", "gender"];
   const headers =
     safeData.length > 0
       ? Object.keys(safeData[0]).filter((key) => !hiddenColumns.includes(key))
@@ -126,7 +126,7 @@ export default function TableComponent({
     <div className="overflow-x-scroll min-w-full">
       <Card className="border border-border">
         <CardHeader>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle className="font-[georgia]">{title}</CardTitle>
           <CardDescription>{caption}</CardDescription>
         </CardHeader>
 
@@ -176,7 +176,7 @@ export default function TableComponent({
                   {sortKey === header && (sortOrder === "asc" ? " ↑" : " ↓")}
                 </TableHead>
               ))}
-              <TableHead className="text-right">Actions</TableHead>
+              {/* <TableHead className="text-right">Actions</TableHead> */}
             </TableRow>
           </TableHeader>
 
@@ -195,7 +195,7 @@ export default function TableComponent({
                 <TableRow
                   key={row.id ?? JSON.stringify(row)}
                   className="cursor-pointer"
-                  onClick={() => onView(row)}
+                  // onClick={() => onView(row)}
                 >
                   {headers.map((header) => (
                     <TableCell key={header}>
@@ -264,9 +264,18 @@ export default function TableComponent({
         </Table>
 
         <div className="flex justify-between items-center px-6 py-4 text-sm">
-          <span className="text-muted-foreground">
-            Page {page} of {pageCount}
+          <span className="text-muted-foreground text-sm">
+            Showing{" "}
+            <span className="font-medium text-foreground">
+              {page} of {pageCount}
+            </span>{" "}
+            of{" "}
+            <span className="font-medium text-foreground">
+              {tableCellsData.length}
+            </span>{" "}
+            students
           </span>
+
           <div className="flex gap-2">
             <Button
               variant="outline"

@@ -77,7 +77,7 @@ export default function CardComponent({
           </CardHeader>
           <CardContent className="flex flex-col gap-2 -my-2">
             <p
-              className={`font-extrabold text-center  ${
+              className={`font-extrabold text-start font-mono ${
                 isMobile ? "text-lg" : "text-xl"
               }`}
             >

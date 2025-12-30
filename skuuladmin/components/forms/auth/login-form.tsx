@@ -13,7 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import ContactPage from "@/components/contact/contactUs";
+import ContactPage from "@/components/contact/contact-us";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -42,7 +42,6 @@ export default function LoginForm() {
     // placeholder – will replace with RTK later
     console.log("Login attempt:", values);
     setAnimateOut(true); // trigger exit animation
-
     setTimeout(() => {
       router.push("/overview");
       // router.push("/dashboard"); // navigate after animation
@@ -103,7 +102,8 @@ export default function LoginForm() {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full h-10 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition flex items-center justify-center gap-2"
+          className="w-full h-10 py-3 text-gray-700 rounded-lg font-medium transition flex items-center justify-center gap-2 bg-yellow-500/80 hover:bg-yellow-500/90 cursor-pointer "
+          variant={"ghost"}
         >
           {isSubmitting ? "Loading..." : "Login"}
           {!isSubmitting && <SendHorizontal />}

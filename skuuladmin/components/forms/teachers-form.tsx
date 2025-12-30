@@ -140,7 +140,7 @@ export function TeacherForm({
             placeholder="Enter phone number"
           />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-2 ">
           <Label htmlFor="gender">Gender *</Label>
           <Select
             value={formData.gender}
@@ -181,7 +181,7 @@ export function TeacherForm({
             </SelectContent>
           </Select>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-2 ">
           <Label htmlFor="status">Status</Label>
           <Select
             value={formData.status}

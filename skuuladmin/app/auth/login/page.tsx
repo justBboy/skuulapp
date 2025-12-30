@@ -2,7 +2,9 @@
 
 import LoginForm from "@/components/forms/auth/login-form";
 import Image from "next/image";
-import logo from "@/public/purple-dices.png"; // placeholder for school logo
+// import logo from "@/public/purple-dices.png"; // placeholder for school logo
+
+import logo from "@/public/SkuulBusLogo1.png";
 // import PageTransition from "@/components/animations/page-transitions";
 
 export default function LoginPage() {
@@ -13,7 +15,7 @@ export default function LoginPage() {
         <Image
           src={logo}
           alt="Skuul Logo"
-          width={100}
+          width={200}
           height={120}
           className="mb-6"
         />

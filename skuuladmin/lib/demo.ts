@@ -152,31 +152,37 @@ export const SchoolsAttentionData = [
       label: "Register New School",
       icon: Plus,
       variant: "default" as const,
+      href:"#"
     },
     {
       label: "View All Schools",
       icon: Eye,
       variant: "outline" as const,
+      href:"#"
     },
     {
       label: "Send Announcement",
       icon: Megaphone,
       variant: "outline" as const,
+      href:"#"
     },
     {
       label: "Create Course Template",
       icon: FileText,
       variant: "outline" as const,
+      href:"#"
     },
     {
       label: "Bulk Import",
       icon: Upload,
       variant: "outline" as const,
+      href:"#"
     },
     {
       label: "Generate Report",
       icon: BarChart3,
       variant: "outline" as const,
+      href:"#"
     },
   ];
 

@@ -1,13 +1,4 @@
 "use client";
-
-import {
-  Plus,
-  Eye,
-  Megaphone,
-  FileText,
-  Upload,
-  BarChart3,
-} from "lucide-react";
 import {
   Card,
   CardContent,
@@ -17,8 +8,12 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import ClickTransition from "../animations/click_transition";
+import ClickTransition from "./animations/click_transition";
 import { QuickActionFeatures } from "@/lib/types";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { AddTeacherModal } from "./add-teacher-model";
+import { useState } from "react";
 
 // const actions = [
 //   {
@@ -58,6 +53,9 @@ export function QuickActions({
 }: {
   features: QuickActionFeatures[];
 }) {
+  const router = useRouter();
+  const [isNewTeacherModalOpen, setIsNewTeacherModalOpen] = useState(false);
+
   return (
     <div className="bg-card border-none">
       <CardHeader>
@@ -73,18 +71,26 @@ export function QuickActions({
           //   className="flex flex-col items-center gap-2 text-xs cursor-pointer"
           // >
           <ClickTransition key={action.label}>
+            {/* <Link href={action.href}> */}
             <Button
               key={action.label}
               variant={action.variant}
               className="h-auto w-full py-3 flex flex-col items-center gap-2 text-xs cursor-pointer border"
+              // onClick={router.push(action.href)}
+              onClick={() => setIsNewTeacherModalOpen(true)}
             >
               <action.icon className="h-5 w-5" />
               <span className="text-center leading-tight">{action.label}</span>
             </Button>
+            {/* </Link> */}
           </ClickTransition>
           // </motion.div>
         ))}
       </CardContent>
+
+      <div className="">
+        <AddTeacherModal isOpen={isNewTeacherModalOpen} />
+      </div>
     </div>
   );
 }

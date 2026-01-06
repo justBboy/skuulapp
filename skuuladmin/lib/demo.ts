@@ -113,35 +113,35 @@ export const SchoolsAttentionData = [
     {
       id: "1",
       action: "New teacher added",
-      teacherName: "Maria Garcia",
+      name: "Maria Garcia",
       timestamp: "2024-12-01T09:30:00",
       type: "added",
     },
     {
       id: "2",
       action: "Profile updated",
-      teacherName: "Sarah Johnson",
+      name: "Sarah Johnson",
       timestamp: "2024-11-28T14:15:00",
       type: "updated",
     },
     {
       id: "3",
       action: "Status changed to inactive",
-      teacherName: "Robert Brown",
+      name: "Robert Brown",
       timestamp: "2024-11-25T11:00:00",
       type: "status_change",
     },
     {
       id: "4",
       action: "Assigned to Grade 11A",
-      teacherName: "Emily Rodriguez",
+      name: "Emily Rodriguez",
       timestamp: "2024-11-20T16:45:00",
       type: "assignment",
     },
     {
       id: "5",
       action: "New teacher added",
-      teacherName: "Emily Rodriguez",
+      name: "Emily Rodriguez",
       timestamp: "2024-11-20T10:00:00",
       type: "added",
     },
@@ -208,3 +208,64 @@ export const SchoolsAttentionData = [
       variant: "outline" as const,
     },
   ]
+  export const studentQuickActions =[
+    {
+      label: "Add Student",
+      icon: Plus,
+      variant: "default" as const,
+    },
+    {
+      label: "View All Student",
+      icon: Eye,
+      variant: "outline" as const,
+    }, 
+    {
+      label: "Send Announcement",
+      icon: Megaphone,
+      variant: "outline" as const,
+    },
+    {
+      label: "Export",
+      icon: Download,
+      variant: "outline" as const,
+    },
+  ]
+
+    // RECENT STUDENTS ACTIVITY IN TEACHERS PAGE
+    export const studentActivities: ActivityLog[] = [
+      {
+        id: "1",
+        action: "New student added",
+        name: "Lawson Academy",
+        timestamp: "2024-12-01T09:30:00",
+        type: "added",
+      },
+      {
+        id: "2",
+        action: "Profile updated",
+        name: "Tutu Serah",
+        timestamp: "2024-11-28T14:15:00",
+        type: "updated",
+      },
+      {
+        id: "3",
+        action: "Status changed to inactive",
+        name: "Robert Brown",
+        timestamp: "2024-11-25T11:00:00",
+        type: "status_change",
+      },
+      {
+        id: "4",
+        action: "Assigned to Grade 11A",
+        name: "Emily Rodriguez",
+        timestamp: "2024-11-20T16:45:00",
+        type: "assignment",
+      },
+      {
+        id: "5",
+        action: "New student added",
+        name: "James Brownes",
+        timestamp: "2024-11-20T10:00:00",
+        type: "added",
+      },
+    ]

@@ -39,7 +39,7 @@ const getActivityColor = (type: ActivityLog["type"]) => {
 
 export function RecentActivities({ activities }: RecentActivitiesProps) {
   return (
-    <Card className="shadow-sm">
+    <div className="bg-card border-none">
       <CardHeader>
         <CardTitle className="text-base">Recent Activities</CardTitle>
       </CardHeader>
@@ -60,7 +60,7 @@ export function RecentActivities({ activities }: RecentActivitiesProps) {
                     {activity.action}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    {activity.teacherName}
+                    {activity.name}
                     {/* {name} */}
                   </p>
                 </div>
@@ -83,6 +83,6 @@ export function RecentActivities({ activities }: RecentActivitiesProps) {
           })}
         </div>
       </CardContent>
-    </Card>
+    </div>
   );
 }

@@ -32,7 +32,9 @@ export default function page() {
       <Card className="">
         <QuickActions features={teachersQuickActions} />
       </Card>
-      <RecentActivities activities={teachersActivities} />
+      <Card>
+        <RecentActivities activities={teachersActivities} />
+      </Card>
     </div>
   );
 }

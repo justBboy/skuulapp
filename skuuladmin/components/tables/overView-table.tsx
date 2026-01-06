@@ -21,6 +21,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { Card } from "../ui/card";
 
 type TableProps<T extends object> = {
   data: T[];
@@ -96,7 +97,7 @@ export function DynamicTable<T extends object>({
 
   return (
     <div className="space-y-6">
-      <div className="border rounded-xl p-6 bg-background">
+      <Card className="border rounded-xl p-6 bg-background">
         {/* SEARCH */}
         <div className="flex items-center justify-between">
           <div className="">
@@ -227,7 +228,7 @@ export function DynamicTable<T extends object>({
             </TableRow>
           </TableFooter>
         </Table>
-      </div>
+      </Card>
     </div>
   );
 }

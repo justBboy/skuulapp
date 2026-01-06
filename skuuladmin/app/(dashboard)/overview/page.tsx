@@ -146,7 +146,7 @@ export default function OverviewPage() {
           tableCellsData={StudentsTable}
         />
       </div> */}
-      <div className="">
+      <div>
         <DynamicTable
           data={OverviewSchoolTable}
           title="All Schools"

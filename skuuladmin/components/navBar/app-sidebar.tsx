@@ -54,7 +54,7 @@ export function AppSidebar() {
 
   /* ---------------- POLISHED ACTIVE STYLES ---------------- */
   const activeMenuItem =
-    "relative text-yellow-700 bg-primary/10 transition-all duration-300 ease-out " +
+    "relative text-yellow-700 dark:text-yellow-500 bg-primary/10 transition-all duration-300 ease-out " +
     "before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-yellow-500 " +
     "before:origin-top before:scale-y-100 before:transition-transform before:duration-300";
 
@@ -62,7 +62,7 @@ export function AppSidebar() {
     "relative transition-all duration-300 ease-out hover:bg-primary/5";
 
   const activeSubMenuItem =
-    "relative text-yellow-700 bg-primary/5 transition-all duration-300 ease-out " +
+    "relative text-yellow-700 dark:text-yellow-500 bg-primary/5 transition-all duration-300 ease-out " +
     "before:absolute before:left-0 before:top-0 before:h-full before:w-[1px] before:bg-yellow-400/70 " +
     "before:origin-top before:scale-y-100 before:transition-transform before:duration-300";
 
@@ -140,7 +140,7 @@ export function AppSidebar() {
   ];
 
   return (
-    <Sidebar collapsible="icon" variant="sidebar">
+    <Sidebar collapsible="icon" variant="sidebar" className="z-50">
       {/* HEADER */}
       <SidebarHeader className="p-2">
         <div className="flex justify-center">

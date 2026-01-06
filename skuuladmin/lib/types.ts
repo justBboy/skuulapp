@@ -20,7 +20,7 @@ export interface Teacher {
   export interface ActivityLog {
     id: string
     action: string
-    teacherName: string
+    name: string
     timestamp: string
     type: "added" | "updated" | "status_change" | "assignment"
   }
@@ -76,19 +76,6 @@ export interface Teacher {
   }
 
 
-  // STUDENT TABLE ROW PROPS
-  // export interface StudentRowProps {
-  //   student: {
-  //     id: string;
-  //     name: string;
-  //     email: string;
-  //     avatar: string;
-  //     class: string;
-  //     status: "active" | "inactive" | "suspended";
-  //     lastActive: string;
-  //     avgScore: number;
-  //   };
-  // }
   export interface StudentRowProps {
       // student: {
       //   id: string;
